@@ -1,0 +1,17 @@
+.partner-logo-container .column {
+    white-space: nowrap;
+    text-align: center; margin: 1em 0;
+    height: 100px;
+}
+
+.vert-helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.partner-logo {
+    background: #3A6F9A;
+    vertical-align: middle;
+    max-height: 100%;
+}
