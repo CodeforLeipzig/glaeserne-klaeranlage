@@ -86,24 +86,43 @@
           </div>
           <div class="small-12 medium-9 column">
             <h3>Darstellung</h3>
-            <div id="control" class="row">
-              <div id="dateMessage" class="callout warning hide">
-                Das Enddatum darf nicht gleich dem oder vor dem Startdatum liegen.
+            <div id="control">
+              <div class="row">
+                <div id="dateMessage" class="callout warning hide">
+                  Das Enddatum darf nicht gleich dem oder vor dem Startdatum liegen.
+                </div>
+                <div class="small-12 medium-6 column">
+                  <label>Startdatum:</label> <span id="startContainer"></span>
+                </div>
+                <div class="small-12 medium-6 column">
+                  <label>Enddatum:</label> <span id="endContainer"></span>
+                </div>
               </div>
-              <div class="small-12 medium-6 column">
-                <label>Startdatum:</label> <span id="startContainer"></span>
-              </div>
-              <div class="small-12 medium-6 column">
-                <label>Enddatum:</label> <span id="endContainer"></span>
+              <div class="row">
+                <div class="small-12 column">
+                  <label>
+                    <input type="checkbox" id="showInValue">
+                    Zeige Zuflusswerte an
+                  </label>
+                </div>
               </div>
             </div>
-            <div id="output"></div>
+            <div id="chart"></div>
+            <div id="detail"></div>
           </div>
         </div>
       </div>
     </div>
 
     <hr>
+
+    <div class="row">
+      <div class="small-12">
+          <strong>&copy; OKLab Leipzig</strong> | <a href="https://okfn.de/impressum/">Impressum</a>
+      </div>
+    </div>
+
+    <br>
 
     <script type="text/javascript" src="assets/vendor/js/jquery.min.js"></script>
     <script type="text/javascript" src="assets/vendor/js/jquery.csv.js"></script>
