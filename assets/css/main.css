@@ -8,6 +8,10 @@ h3 {font-size: 1.6rem;}
 h4 {font-size: 1.4rem;}
 h5 {font-size: 1.2rem;}
 
+#output {
+    margin-top: 1em;
+}
+
 .partner-logo-container .column {
     white-space: nowrap;
     text-align: center; margin: 1em 0;
