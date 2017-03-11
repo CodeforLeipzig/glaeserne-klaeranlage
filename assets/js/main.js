@@ -78,7 +78,7 @@ function drawData(input) {
     return d3.max(data.slice(1)) * 1.2;
   }));
   if (typeof(threshold) !== "undefined") {
-    maxY = d3.max([maxY, parseInt(threshhold, 10) + 1]);
+    maxY = d3.max([maxY, parseInt(threshhold, 10) * 1.2]);
   }
   context = {
     bindto: "#output",
