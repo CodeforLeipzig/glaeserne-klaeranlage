@@ -1,5 +1,7 @@
 var loadedData;
 var activeChart;
+var startDate;
+var endDate;
 
 function energy() {
   energy_oursourcing = ['Fremdbezug in kwh'];
@@ -46,9 +48,11 @@ function oxygenBiologic() {
 }
 
 function getData(dataSets, thresholdName) {
-  dates = ['x']
+  dates = ['x'];
+  startDate = $('<select id="startDate" name="startDate"></select>');
+  endDate = $('<select id="endDate" name="endDate">');
   checkValue = dataSets[0][0];
-  preparedDatasets = [dates].concat(dataSets)
+  preparedDatasets = [dates].concat(dataSets);
   if (typeof(thresholdName) !== "undefined") {
     threshhold = loadedData[0][thresholdName];
   } else {
@@ -58,6 +62,9 @@ function getData(dataSets, thresholdName) {
     currentDataSet = loadedData[i];
     if (currentDataSet[checkValue] !== "") {
       preparedDatasets[0].push(currentDataSet["Datum"]);
+      opt = "<option value='" + currentDataSet['Datum'] + "'>" + currentDataSet['Datum'] +'</option>';
+      startDate.append(opt);
+      endDate.append(opt);
       for (var j = 1; j < preparedDatasets.length; j++) {
         preparedDatasets[j].push(
           parseFloat(
@@ -71,9 +78,28 @@ function getData(dataSets, thresholdName) {
   return [preparedDatasets, threshhold]
 }
 
-function drawData(input) {
+function drawData(input, update) {
   data = input[0];
   threshold = input[1];
+  if (update) {
+    startIndex = data[0].indexOf($('#startDate').val());
+    endIndex = data[0].indexOf($('#endDate').val());
+    if (endIndex >= startIndex) {
+      $('#dateMessage').addClass("hide");
+    } else {
+      $('#dateMessage').removeClass("hide");
+    }
+    newData = [];
+    for (var i=0; i < data.length; i++) {
+      newData.push([data[i][0]].concat(data[i].slice(startIndex, endIndex)));
+    }
+    data = newData;
+  } else {
+    $('#control #startContainer').html('').append(startDate);
+    $('#control #endContainer').html('').append(endDate);
+    $('#endDate').val(data[0][data[0].length - 1]);
+    $('#startDate, #endDate').on('change', function () {window.update()});
+  }
   maxY = Math.ceil(d3.max(data.slice(1), function(data) {
     return d3.max(data.slice(1)) * 1.2;
   }));
@@ -115,17 +141,19 @@ function loadData(callback) {
 }
 
 function update(e) {
-  activeChart = 'energy';
+  currentChoosenChart = activeChart
+  if (typeof(activeChart) === "undefined") {
+    activeChart = "energy";
+  }
   if (typeof(e) !== "undefined") {
-    e.preventDefault();
     activeChart = $(e.target).data('target');
   }
-  drawData(window[activeChart]());
+  drawData(window[activeChart](), (currentChoosenChart == activeChart));
 }
 
 $('.update-chart').click(update);
 
 $(document).ready(function() {
   loadData();
-  $('body').css('min-height', $('body').height() + 350);
+  $('body').css('min-height', $('body').height() + 450);
 })
