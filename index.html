@@ -41,7 +41,7 @@
       </div>
 
       <div class="small-12 medium-6 columns">
-        <h3 id="introduction">Die gläserne Kläranlage</h3>
+        <h1 id="introduction">Die gläserne Kläranlage</h1>
         <p>
           Beim OpenDataDay am 4. März 2017, wurde mit Hilfe der Anwesenden sowie der Unterstützung
           der <a href="http://www.oewa.de/">OEWA</a>, der <a href="https://www.gi.de/">Gesellschaft für Informatik</a> und dem <a href="http://codefor.de/leipzig/">Leipziger OpenKnowledgeLab</a> die hier zu findenen Informationen erstellt. Diese Seite soll einen Einblick darüber geben, wie eine Kläranlage funktioniert und aufzeigen das sie in dem meisten Fällen autark vom Stromnetz arbeitet. Darüber hinaus schaft sie Transparenz, da Werte der vergangenen Monate geprüft und nachvollzogen werden können.
@@ -51,14 +51,47 @@
 
     <hr>
 
-    <div class="column row">CONTENT</div>
+    <div class="row">
+      <div class="small 12">
+        <h2>Visualisierung</h2>
+        <div class="row">
+          <div class="small-12 medium-3 column">
+            <ul class="vertical menu" data-drilldown data-auto-height="true">
+              <li>
+                <a href="#Item-1">Item 1</a>
+                <ul class="vertical menu">
+                  <li><a href="#Item-1A">Item 1A</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#Item-2">Item 2</a>
+                <ul class="vertical menu">
+                  <li><a href="#Item-1A">Item 1A</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#Item-3">Item 3</a>
+              </li>
+            </ul>
+          </div>
+          <div class="small-12 medium-9 column">
+            CONTENT
+          </div>
+        </div>
+      </div>
+    </div>
 
     <hr>
 
-    <script src="assets/vendor/js/jquery.min.js"></script>
-    <script src="assets/vendor/js/jquery.csv.js"></script>
-    <script src="assets/vendor/js/d3.v3.js"></script>
-    <script src="assets/vendor/js/c3.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/js/jquery.csv.js"></script>
+    <script type="text/javascript" src="assets/vendor/js/foundation.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/js/d3.v3.js"></script>
+    <script type="text/javascript" src="assets/vendor/js/c3.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).foundation();
+    </script>
 
   </body>
 </html>
