@@ -194,11 +194,10 @@ $(document).ready(function() {
         current_image = 0;
       }
       $('#main-image img').fadeOut(500, function() {
-        $(this).attr('src',images[current_image]).bind('onreadystatechange load', function(){
-          if (this.complete) $(this).fadeIn(500);
-        });
+        $(this).attr('src', images[current_image])
+        $(this).fadeIn(500);
       })
     },
-    3000
+    5000
   )
 })
