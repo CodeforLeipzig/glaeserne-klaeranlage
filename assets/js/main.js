@@ -136,6 +136,13 @@ function drawData(input, update) {
         ]
       }
     }
+    context.data.color = function(color, d) {
+      if (data.length === 3) {
+        if (!isNaN(data[2][d.index+1]))
+          return '#F00'
+      }
+      return color;
+    }
   }
   $("#comparison").html("");
   var chart = c3.generate(context);
@@ -165,8 +172,33 @@ function update(e) {
 
 $(".update-chart").click(update);
 
+current_image = 0;
+
+images = [
+  'assets/img/KA1.jpg',
+  'assets/img/KA2.jpg',
+  'assets/img/KA3.jpg',
+  'assets/img/KA4.jpg',
+]
+
 $(document).ready(function() {
   $("#showInValue").on('change', update);
   loadData();
   $("body").css("min-height", ($("body").height()+200) + "px");
+  $('#main-image').height($('#main-image').height());
+  $('#main-image').width($('#main-image').width());
+  setInterval(
+    function() {
+      current_image++;
+      if (current_image == images.length) {
+        current_image = 0;
+      }
+      $('#main-image img').fadeOut(500, function() {
+        $(this).attr('src',images[current_image]).bind('onreadystatechange load', function(){
+          if (this.complete) $(this).fadeIn(500);
+        });
+      })
+    },
+    3000
+  )
 })
