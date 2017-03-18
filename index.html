@@ -59,7 +59,7 @@
     <div class="row">
       <div class="small-12 column">
         <div class="row">
-          <div class="small-12 medium-3 column">
+          <div id="nav" class="small-12 medium-3 column">
             <h3>Inhalt</h3>
             <ul class="vertical menu" data-drilldown data-auto-height="true">
               <li>
@@ -88,6 +88,12 @@
                 </ul>
               </li>
             </ul>
+            <div id="detail">
+              <h4>Grafischer Vergleich In/Out</h4>
+              <span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" data-width="400" title="Zulauf in orange. Ablauf in blau.">
+                <div id="detail-content"></div>
+              </span>
+            </div>
           </div>
           <div class="small-12 medium-9 column">
             <h3>Darstellung</h3>
@@ -107,13 +113,12 @@
                 <div class="small-12 column">
                   <label>
                     <input type="checkbox" id="showInValue">
-                    Zeige Zuflusswerte an
+                    Zeige <span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" data-width="400" title="Zuflusswerte werden nur bei Werten des Unterbereiches 'Ablauf (mit Grenzwerten)' angezeigt. Mit einem Klick auf Eintäge für die es sowohl einen Zufluss- als auch einen Ablaufwert gibt, ist eine alternative Darstellung verfügbar. Diese Werte sind in der Grafik rot hervorgehoben.">Zuflusswerte</span> an
                   </label>
                 </div>
               </div>
             </div>
             <div id="chart"></div>
-            <div id="detail"></div>
           </div>
         </div>
       </div>

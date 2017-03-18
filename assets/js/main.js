@@ -138,10 +138,48 @@ function drawData(input, update) {
     }
     context.data.color = function(color, d) {
       if (data.length === 3) {
-        if (!isNaN(data[2][d.index+1]))
+        if (!isNaN(data[2][d.index+1])) {
           return '#F00'
+        }
       }
       return color;
+    }
+    context.data.onclick = function(e) {
+      if (data.length === 3) {
+        if (!isNaN(data[2][e.index+1])) {
+          $('#detail').fadeOut(500);
+          $('#detail-content').html('');
+          width = $('#nav').width();
+          height = width * 3 / 4;
+          $('#detail-content').width(width);
+          $('#detail-content').height(height);
+          inVal = data[2][e.index+1]
+          outVal = data[1][e.index+1]
+          ratio = outVal / inVal
+          console.log(ratio)
+          d3Data = [
+            {x: 0, y: 0, width: width, height: height, color: '#FEB778'},
+            {
+              x: width - (width*ratio), y: height - (height*ratio),
+              width: (width - (width*ratio)) - ratio,
+              height: (height - (height*ratio)) - ratio,
+              color: '#1F77B4'
+            }
+          ]
+          var svg = d3.select('#detail-content')
+            .append('svg').attr("width", width).attr("height", height);
+          for (var i = 0; i < 2; i++) {
+            console.log(d3Data[i]);
+            svg.append('rect')
+              .attr("x", d3Data[i].x)
+              .attr("y", d3Data[i].y)
+              .attr("width", d3Data[i].width)
+              .attr("height", d3Data[i].height)
+              .attr("fill", d3Data[i].color)
+          }
+          $('#detail').fadeIn(500);
+        }
+      }
     }
   }
   $("#comparison").html("");
@@ -167,6 +205,7 @@ function update(e) {
     activeChart = $(e.target).data("target");
   }
   showInValue = $("#showInValue").is(":checked");
+  $('#detail').fadeOut();
   drawData(window[activeChart](showInValue), (currentChoosenChart == activeChart));
 }
 

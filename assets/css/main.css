@@ -29,3 +29,7 @@ h5 {font-size: 1.2rem;}
     vertical-align: middle;
     max-height: 100%;
 }
+
+.tooltip {
+    max-width: 600px;
+}
